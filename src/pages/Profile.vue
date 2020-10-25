@@ -31,9 +31,9 @@
           about: 'Lamborghini Mercy, Your chick she so thirsty, I\'m in that two seat Lambo.'
         },
         user: {
-          fullName: 'Mike Andrew',
-          title: 'Ceo/Co-Founder',
-          description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+          fullName: 'S A D Ushan Indeewara Alwis',
+          title: 'Software Engineer',
+          description: `Hi.I am Ushan Alwis Graduated at Plymouth University UK in age 22. and Currently Working as a Software Engineer at Acceura Technologies.and this is my open source project for display COVID 19 Pandemic data in Srilanka and Globaly.`,
         }
       }
     }
