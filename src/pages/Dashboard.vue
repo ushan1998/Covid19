@@ -1,15 +1,23 @@
 <template>
-  <div>
+  <div style="overflow:hidden;">
     <div class="row">
+    
       <div class="col-lg-12 col-sm-6 col-xs-6">
+          <h3>COVID 19 DASHBOARD</h3>
         <div class="btn-group btn-group-toggle" style="float:left;">
-          <label class="btn btn-sm btn-default btn-simple active" style="margin-top:8px;font-size:10px;">
-            Last Update 
+          <label
+            class="btn btn-sm btn-default btn-simple active"
+            style="margin-top:8px;font-size:10px;"
+          >
+            Last Update
           </label>
         </div>
         <div class="btn-group btn-group-toggle" style="float:left;">
-          <label class="btn btn-sm btn-primary btn-simple active" style="margin-top:8px;font-size:10px;"> 
-            {{info.update_date_time}}
+          <label
+            class="btn btn-sm btn-primary btn-simple active"
+            style="margin-top:8px;font-size:10px;"
+          >
+            {{ info.update_date_time }}
           </label>
         </div>
 
@@ -242,32 +250,34 @@
             <div class="row">
               <div class="col-sm-6" :class="isRTL ? 'text-right' : 'text-left'">
                 <h5 class="card-category">
-                  SRILANKA 
+                  SRILANKA
                 </h5>
-                 <img src="img/srilanka.png" alt="..." style="width:50px;height:25px;border-radius: 0.0rem;" />
+                <img
+                  src="img/srilanka.png"
+                  alt="..."
+                  style="width:50px;height:25px;border-radius: 0.0rem;"
+                />
                 <h3 class="card-title">Daily PCR Testing</h3>
               </div>
               <div class="col-sm-6">
-                <div
-                  class="btn-group btn-group-toggle"
-                  :class="isRTL ? 'float-left' : 'float-right'"
-                  data-toggle="buttons"
-                >
+                <div class="btn-group btn-group-toggle" style="float:right;">
                   <label
-                    v-for="(option, index) in bigLineChartCategories"
-                    :key="option"
-                    class="btn btn-sm btn-primary btn-simple"
-                    :class="{ active: bigLineChart.activeIndex === index }"
-                    :id="index"
+                    class="btn btn-sm btn-default btn-simple active"
+                    style="margin-top:8px;font-size:10px;"
                   >
-                    <input
-                      type="radio"
-                      @click="initBigChart(index)"
-                      name="options"
-                      autocomplete="off"
-                      :checked="bigLineChart.activeIndex === index"
+                    <animated-number
+                      :value="info.total_pcr_testing_count"
+                      :formatValue="valueFormat"
+                      :duration="duration"
                     />
-                    {{ option }}
+                  </label>
+                </div>
+                <div class="btn-group btn-group-toggle" style="float:right;">
+                  <label
+                    class="btn btn-sm btn-primary btn-simple active"
+                    style="margin-top:8px;font-size:10px;"
+                  >
+                    PCR Test Count
                   </label>
                 </div>
               </div>
@@ -292,8 +302,34 @@
           <h4 slot="header" class="card-title">
             COVID 19 Global Update
           </h4>
-          <div class="table-responsive">
-            <user-table></user-table>
+          <div class="table-responsive" style="height:350px;overflow:scroll;">
+            <base-table :data="Countries" :columns="columns">
+              <template slot="columns">
+                <th>Country</th>
+                <th>New Cases</th>
+                <th>Total Cases</th>
+                <th>NewD eaths</th>
+                <th>Total Deaths</th>
+                <th>New Recovered</th>
+                <th>Total Recovered</th>
+              </template>
+              <template slot-scope="{ row }">
+                <td>
+                  <label
+                    class="btn btn-sm btn-primary btn-simple active"
+                    style="margin-top:8px;font-size:10px;" @click="getCountryCode(row.Slug)"
+                  >
+                    {{ row.Country }}
+                  </label>
+                </td>
+                <td>{{ row.NewConfirmed }}</td>
+                <td>{{ row.TotalConfirmed }}</td>
+                <td>{{ row.NewDeaths }}</td>
+                <td>{{ row.TotalDeaths }}</td>
+                <td>{{ row.NewRecovered }}</td>
+                <td>{{ row.TotalRecovered }}</td>
+              </template>
+            </base-table>
           </div>
         </card>
       </div>
@@ -301,6 +337,7 @@
   </div>
 </template>
 <script>
+import { BaseTable } from "@/components";
 import LineChart from "@/components/Charts/LineChart";
 import AnimatedNumber from "animated-number-vue";
 import BarChart from "@/components/Charts/BarChart";
@@ -317,10 +354,24 @@ export default {
     TaskList,
     UserTable,
     AnimatedNumber,
+    BaseTable,
   },
   data() {
     return {
+      columns: [
+        "Country",
+        "CountryCode",
+        "Slug",
+        "NewConfirmed",
+        "TotalConfirmed",
+        "NewDeaths",
+        "TotalDeaths",
+        "TotalRecovered",
+        "Date",
+      ],
+      Countries: [],
       info: [],
+      globalInfo: [],
       global_new_deaths: "",
       showLocalData: true,
       showGlobalData: false,
@@ -496,12 +547,11 @@ export default {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
-    //     formatToPrice(value) {
-    //   return `<h3>$ ${Number(value).toFixed(2)}</h1>`;
-    // },
-    fetchData(){
-      
-    }
+    getCountryCode(index) {
+      let Slug = index;
+      console.log("Selected Slug :", Slug);
+      this.$router.push({path: `dashboard/${Slug}` });
+    },
   },
   mounted() {
     this.i18n = this.$i18n;
@@ -525,6 +575,14 @@ export default {
         (this.info = response.data.data), console.log("get Data:", this.info);
         console.log("GLobal New deaths:", this.global_new_deaths);
       });
+
+    axios.get("https://api.covid19api.com/summary").then((response) => {
+      (this.globalInfo = response.data),
+        (this.Countries = response.data.Countries);
+      console.log("Gloabal Info:", this.globalInfo);
+      console.log("Gloabal countrues:", this.Countries);
+      // console.log("GLobal New deaths:", this.global_new_deaths);
+    });
   },
 };
 </script>

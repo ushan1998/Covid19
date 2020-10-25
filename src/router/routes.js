@@ -10,6 +10,7 @@ const Icons = () => import(/* webpackChunkName: "common" */ "@/pages/Icons.vue")
 const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
+const GlobalDetails = () => import("@/pages/GlobalDetails.vue");
 
 const routes = [
   {
@@ -19,9 +20,35 @@ const routes = [
     children: [
       {
         path: "dashboard",
-        name: "dashboard",
-        component: Dashboard
+        meat: {
+         label : "dashboard"
+        },
+        component: {
+          render(c){
+            return c('router-view')
+          }
+        },
+        children:[
+          {
+            path:'',
+            name:'Dashboard',
+            component: Dashboard
+          },
+          {
+            path:':Slug',
+            meta:{
+              label:'GlobalDetails'
+            },
+            name :'GlobalDetails',
+            component: GlobalDetails
+          }
+        ]
       },
+      // {
+      //   path: "dashboard",
+      //   name: "dashboard",
+      //   component: Dashboard
+      // },
       {
         path: "profile",
         name: "profile",
