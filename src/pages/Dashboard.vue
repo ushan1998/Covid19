@@ -1,9 +1,10 @@
 <template>
   <div style="overflow:hidden;">
     <div class="row">
-    
       <div class="col-lg-12 col-sm-6 col-xs-6">
-          <h3>COVID 19 DASHBOARD</h3>
+        <h3>
+          COVID 19 DASHBOARD
+        </h3>
         <div class="btn-group btn-group-toggle" style="float:left;">
           <label
             class="btn btn-sm btn-default btn-simple active"
@@ -50,10 +51,15 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">Local New Cases</h5>
+            <h5 class="card-category">New Cases</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/search.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
+              <!-- <i class="tim-icons icon-bell-55 text-primary "></i> -->
               <animated-number
                 :value="info.local_new_cases"
                 :formatValue="valueFormat"
@@ -66,11 +72,15 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">Local Total Cases</h5>
+            <h5 class="card-category">Total Confirmed Cases</h5>
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/search.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
-                :value="info.global_new_deaths"
+                :value="info.local_total_cases"
                 :formatValue="valueFormat"
                 :duration="duration"
               />
@@ -81,9 +91,13 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">Local Deaths</h5>
+            <h5 class="card-category">Deaths</h5>
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/death.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.local_deaths"
                 :formatValue="valueFormat"
@@ -96,10 +110,14 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">Local New Deaths</h5>
+            <h5 class="card-category">New Deaths</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/death.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.local_new_deaths"
                 :formatValue="valueFormat"
@@ -112,10 +130,14 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">Total Recovered</h5>
+            <h5 class="card-category">Recovered & Discharged</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/correct.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.local_recovered"
                 :formatValue="valueFormat"
@@ -131,7 +153,11 @@
             <h5 class="card-category">Active Cases</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/medic.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
 
               <animated-number
                 :value="info.local_active_cases"
@@ -152,7 +178,11 @@
           <template slot="header">
             <h5 class="card-category">Global New Cases</h5>
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/search.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.global_new_cases"
                 :formatValue="valueFormat"
@@ -167,7 +197,11 @@
           <template slot="header">
             <h5 class="card-category">Global Total cases</h5>
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/medic.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.global_total_cases"
                 :formatValue="valueFormat"
@@ -183,7 +217,11 @@
             <h5 class="card-category">Global Deaths</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/death.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.global_deaths"
                 :formatValue="valueFormat"
@@ -199,7 +237,11 @@
             <h5 class="card-category">Global New Deaths</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/death.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.global_new_deaths"
                 :formatValue="valueFormat"
@@ -212,10 +254,14 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">Global Recovered</h5>
+            <h5 class="card-category">Global Total Recovered</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/correct.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
                 :value="info.global_recovered"
                 :formatValue="valueFormat"
@@ -228,12 +274,16 @@
       <div class="col-lg-2 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">local_total_cases</h5>
+            <h5 class="card-category">Global New Recovered</h5>
 
             <h3 class="card-title">
-              <i class="tim-icons icon-bell-55 text-primary "></i>
+              <img
+                src="img/icons/correct.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
               <animated-number
-                :value="info.global_deaths"
+                :value="globalInfo.Global.NewRecovered"
                 :formatValue="valueFormat"
                 :duration="duration"
               />
@@ -315,12 +365,19 @@
               </template>
               <template slot-scope="{ row }">
                 <td>
-                  <label
+                  <strong
+                    @click="getCountryCode(row.Slug)"
+                    style="color:#d725bb;cursor: pointer"
+                  >
+                    {{ row.Country }}</strong
+                  >
+                  <!-- <label
                     class="btn btn-sm btn-primary btn-simple active"
-                    style="margin-top:8px;font-size:10px;" @click="getCountryCode(row.Slug)"
+                    style="margin-top:8px;font-size:10px;"
+                    @click="getCountryCode(row.Slug)"
                   >
                     {{ row.Country }}
-                  </label>
+                  </label> -->
                 </td>
                 <td>{{ row.NewConfirmed }}</td>
                 <td>{{ row.TotalConfirmed }}</td>
@@ -534,14 +591,16 @@ export default {
       this.bigLineChart.activeIndex = index;
     },
     showLocalDataSet() {
-      // alert("show local data");
       this.showLocalData = true;
       this.showGlobalData = false;
+      this.getSrilankanCovidData();
+      this.getGlobalCovidData();
     },
     showGlobalDataSet() {
-      // alert("Show Global Data");
       this.showGlobalData = true;
       this.showLocalData = false;
+      this.getSrilankanCovidData();
+      this.getGlobalCovidData();
     },
     valueFormat(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
@@ -550,7 +609,24 @@ export default {
     getCountryCode(index) {
       let Slug = index;
       console.log("Selected Slug :", Slug);
-      this.$router.push({path: `dashboard/${Slug}` });
+      this.$router.push({ path: `dashboard/${Slug}` });
+    },
+    getSrilankanCovidData() {
+      axios
+        .get("https://hpb.health.gov.lk/api/get-current-statistical")
+        .then((response) => {
+          (this.info = response.data.data), console.log("get Data:", this.info);
+          console.log("GLobal New deaths:", this.global_new_deaths);
+        });
+    },
+    getGlobalCovidData() {
+      axios.get("https://api.covid19api.com/summary").then((response) => {
+        (this.globalInfo = response.data),
+          (this.Countries = response.data.Countries);
+        console.log("Gloabal Info:", this.globalInfo);
+        console.log("Gloabal countrues:", this.Countries);
+        // console.log("GLobal New deaths:", this.global_new_deaths);
+      });
     },
   },
   mounted() {
@@ -569,20 +645,8 @@ export default {
     }
   },
   created() {
-    axios
-      .get("https://hpb.health.gov.lk/api/get-current-statistical")
-      .then((response) => {
-        (this.info = response.data.data), console.log("get Data:", this.info);
-        console.log("GLobal New deaths:", this.global_new_deaths);
-      });
-
-    axios.get("https://api.covid19api.com/summary").then((response) => {
-      (this.globalInfo = response.data),
-        (this.Countries = response.data.Countries);
-      console.log("Gloabal Info:", this.globalInfo);
-      console.log("Gloabal countrues:", this.Countries);
-      // console.log("GLobal New deaths:", this.global_new_deaths);
-    });
+    this.getSrilankanCovidData();
+    this.getGlobalCovidData();
   },
 };
 </script>
