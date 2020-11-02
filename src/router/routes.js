@@ -11,7 +11,8 @@ const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
 const GlobalDetails = () => import("@/pages/GlobalDetails.vue");
-
+const LocalInformation = () => import("@/pages/LocalInformation.vue");
+const LocalhospitalDetails = () => import("@/pages/LocalhospitalDetails.vue");
 const routes = [
   {
     path: "/",
@@ -45,10 +46,36 @@ const routes = [
         ]
       },
       // {
-      //   path: "dashboard",
-      //   name: "dashboard",
-      //   component: Dashboard
+      //   path: "localInformation",
+      //   name: "local Information",
+      //   component: LocalInformation
       // },
+      {
+        path: "localInformation",
+        meat: {
+          label : "local Information"
+         },
+         component: {
+          render(c){
+            return c('router-view')
+          }
+        },
+        children:[
+          {
+            path:'',
+            name:'localInformation',
+            component: LocalInformation
+          },
+          {
+            path:':id',
+            meta:{
+              label:'LocalhospitalDetails'
+            },
+            name :'LocalhospitalDetails',
+            component: LocalhospitalDetails
+          }
+        ]
+      },
       {
         path: "profile",
         name: "profile",
@@ -64,11 +91,7 @@ const routes = [
         name: "icons",
         component: Icons
       },
-      {
-        path: "maps",
-        name: "maps",
-        component: Maps
-      },
+   
       {
         path: "typography",
         name: "typography",
