@@ -4,10 +4,49 @@
       <div class="col-lg-12 col-sm-12 col-xs-12"></div>
     </div>
     <div class="row">
+      <card class="mb-3">
+        <img
+          slot="image"
+          class="card-img-top"
+          src="img/back2.jpg"
+          alt="Card image cap"
+        />
+        <h4 class="card-title">{{ countryHospitalData.hospital.name_si }}</h4>
+
+        <p class="card-text">
+          {{ countryHospitalData.hospital.name }}
+        </p>
+        <p class="card-text">
+          {{ countryHospitalData.hospital.name_ta }}
+        </p>
+      </card>
+      <!-- <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="card bg-dark text-white">
+          <img class="card-img" src="img/back2.jpg" alt="Card image" />
+        </div>
+      </div> -->
+    </div>
+    <div class="row">
       <div class="col-lg-3 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
+            <h5 class="card-category">Updated at</h5>
+
+            <h3 class="card-title">
+              <img
+                src="img/icons/correct.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
+              {{ countryHospitalData.created_at }}
+            </h3>
+          </template>
+        </card>
+      </div>
+      <div class="col-lg-3 col-xs-6">
+        <card type="chart">
+          <template slot="header">
+            <h5 class="card-category">cumulative local</h5>
 
             <h3 class="card-title">
               <img
@@ -25,9 +64,9 @@
         </card>
       </div>
       <div class="col-lg-3 col-xs-6">
-         <card type="chart">
+        <card type="chart">
           <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
+            <h5 class="card-category">cumulative foreign</h5>
 
             <h3 class="card-title">
               <img
@@ -36,7 +75,7 @@
                 style="width:25px;height:25px;margin-right:8px;"
               />
               <animated-number
-                :value="countryHospitalData.cumulative_local"
+                :value="countryHospitalData.cumulative_foreign"
                 :formatValue="valueFormat"
                 :duration="duration"
               />
@@ -45,38 +84,18 @@
         </card>
       </div>
       <div class="col-lg-3 col-xs-6">
-         <card type="chart">
+        <card type="chart">
           <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
+            <h5 class="card-category">treatment local</h5>
 
             <h3 class="card-title">
               <img
-                src="img/icons/search.gif"
+                src="img/icons/death.gif"
                 alt="..."
                 style="width:25px;height:25px;margin-right:8px;"
               />
               <animated-number
-                :value="countryHospitalData.cumulative_local"
-                :formatValue="valueFormat"
-                :duration="duration"
-              />
-            </h3>
-          </template>
-        </card>
-      </div>
-      <div class="col-lg-3 col-xs-6">
-         <card type="chart">
-          <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
-
-            <h3 class="card-title">
-              <img
-                src="img/icons/search.gif"
-                alt="..."
-                style="width:25px;height:25px;margin-right:8px;"
-              />
-              <animated-number
-                :value="countryHospitalData.cumulative_local"
+                :value="countryHospitalData.treatment_local"
                 :formatValue="valueFormat"
                 :duration="duration"
               />
@@ -85,20 +104,20 @@
         </card>
       </div>
     </div>
-        <div class="row">
+    <div class="row">
       <div class="col-lg-3 col-xs-6">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
+            <h5 class="card-category">treatment foreign</h5>
 
             <h3 class="card-title">
               <img
-                src="img/icons/search.gif"
+                src="img/icons/death.gif"
                 alt="..."
                 style="width:25px;height:25px;margin-right:8px;"
               />
               <animated-number
-                :value="countryHospitalData.cumulative_local"
+                :value="countryHospitalData.treatment_foreign"
                 :formatValue="valueFormat"
                 :duration="duration"
               />
@@ -107,6 +126,46 @@
         </card>
       </div>
       <div class="col-lg-3 col-xs-6">
+        <card type="chart">
+          <template slot="header">
+            <h5 class="card-category">cumulative total</h5>
+
+            <h3 class="card-title">
+              <img
+                src="img/icons/medic.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
+              <animated-number
+                :value="countryHospitalData.cumulative_total"
+                :formatValue="valueFormat"
+                :duration="duration"
+              />
+            </h3>
+          </template>
+        </card>
+      </div>
+      <div class="col-lg-3 col-xs-6">
+        <card type="chart">
+          <template slot="header">
+            <h5 class="card-category">treatment total</h5>
+
+            <h3 class="card-title">
+              <img
+                src="img/icons/medic.gif"
+                alt="..."
+                style="width:25px;height:25px;margin-right:8px;"
+              />
+              <animated-number
+                :value="countryHospitalData.treatment_total"
+                :formatValue="valueFormat"
+                :duration="duration"
+              />
+            </h3>
+          </template>
+        </card>
+      </div>
+      <!-- <div class="col-lg-3 col-xs-6">
          <card type="chart">
           <template slot="header">
             <h5 class="card-category">cumulative_local</h5>
@@ -125,47 +184,7 @@
             </h3>
           </template>
         </card>
-      </div>
-      <div class="col-lg-3 col-xs-6">
-         <card type="chart">
-          <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
-
-            <h3 class="card-title">
-              <img
-                src="img/icons/search.gif"
-                alt="..."
-                style="width:25px;height:25px;margin-right:8px;"
-              />
-              <animated-number
-                :value="countryHospitalData.cumulative_local"
-                :formatValue="valueFormat"
-                :duration="duration"
-              />
-            </h3>
-          </template>
-        </card>
-      </div>
-      <div class="col-lg-3 col-xs-6">
-         <card type="chart">
-          <template slot="header">
-            <h5 class="card-category">cumulative_local</h5>
-
-            <h3 class="card-title">
-              <img
-                src="img/icons/search.gif"
-                alt="..."
-                style="width:25px;height:25px;margin-right:8px;"
-              />
-              <animated-number
-                :value="countryHospitalData.cumulative_local"
-                :formatValue="valueFormat"
-                :duration="duration"
-              />
-            </h3>
-          </template>
-        </card>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-lg-12">
@@ -225,18 +244,20 @@ export default {
     },
     getHospitalDetails() {
       let thisListning;
-      axios.get("https://hpb.health.gov.lk/api/get-current-statistical").then((response) => {
-        const id = this.$route.params.id;
-        thisListning = response.data.data.hospital_data.find(
-          (listning, index) => listning.id == id
-        );
-        this.countryHospitalData = thisListning;
-        console.log("Selected COuntry Data :", this.countryHospitalData);
-      });
+      axios
+        .get("https://hpb.health.gov.lk/api/get-current-statistical")
+        .then((response) => {
+          const id = this.$route.params.id;
+          thisListning = response.data.data.hospital_data.find(
+            (listning, index) => listning.id == id
+          );
+          this.countryHospitalData = thisListning;
+          console.log("Selected COuntry Data :", this.countryHospitalData);
+        });
     },
   },
   created() {
-      this.getHospitalDetails();
+    this.getHospitalDetails();
   },
 };
 </script>
